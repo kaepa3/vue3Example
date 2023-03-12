@@ -1,5 +1,5 @@
 <script lang="ts">
-import MyButton from "./basic/MyButton.vue";
+import MyButton from "@/components/basic/MyButton.vue";
 
 export default {
   components: {
@@ -22,6 +22,8 @@ export default {
 
 <template>
   <input type="text" v-model="newTodoText" />
-  <MyButton @click="todoAdd">追加</MyButton>
+  <MyButton @click="todoAdd"
+    ><img src="@/assets/icon-plus.svg" height="10"
+  /></MyButton>
   <MyButton @click="$emit('delete-done')">完了済みを削除する</MyButton>
 </template>

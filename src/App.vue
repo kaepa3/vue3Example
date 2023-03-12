@@ -1,14 +1,8 @@
 <script lang="ts">
-import TodoAdd from "./components/TodoAdd.vue";
 import { stringifyStyle } from "@vue/shared";
 import { compile, warn } from "vue";
-import TodoList from "./components/TodoList.vue";
 
 export default {
-  components: {
-    TodoAdd,
-    TodoList,
-  },
   data() {
     return {
       title: "ok title",
@@ -17,20 +11,7 @@ export default {
       textStatus: {
         green: true,
       },
-      todos: [{ isDone: false, text: "hoge" }],
     };
-  },
-  methods: {
-    addTodo(newText: string) {
-      if (!newText) return alert("please input text");
-      this.todos.push({
-        text: newText,
-        isDone: false,
-      });
-    },
-    clearDoneTodos() {
-      this.todos = this.todos.filter((x) => !x.isDone);
-    },
   },
 };
 </script>
@@ -39,13 +20,17 @@ export default {
   <div>
     <h1 :class="textStatus" :title="message">{{ title }}</h1>
   </div>
+  <router-link to="/">Home</router-link> ・
+  <router-link to="/edit">Edit</router-link>
   <h1>My ToDo App</h1>
-  <TodoAdd @delete-done="clearDoneTodos" @add-todo="addTodo" />
-  <p v-if="todos.length === 0">Todoがまだありません</p>
-  <TodoList v-else :todos="todos" />
+  <router-view />
 </template>
 
 <style scoped>
+body {
+  background-color: #eee;
+}
+
 .green {
   color: green;
 }
